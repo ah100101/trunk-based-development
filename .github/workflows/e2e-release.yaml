@@ -2,15 +2,13 @@ name: E2E-Release
 on: [deployment_status]
 jobs:
   e2e:
-    name: e2e
-    if: ${{ github.repository }} == 'refs/heads/main' && github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
+    if: github.event.deployment.environment == 'Production' && github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Placeholder for running e2e tests via Github Actions (Cypress, Playwright, etc)
-        run: sleep 30
+        run: sleep 1 && echo $VERCEL_GIT_COMMIT_REF
   release:
     needs: e2e
-    name: release
     runs-on: ubuntu-latest
     steps:
       - name: Install Vercel CLI
