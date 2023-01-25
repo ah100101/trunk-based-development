@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Placeholder for running e2e tests via Github Actions (Cypress, Playwright, etc)
-        run: sleep 1 && echo $VERCEL_GIT_COMMIT_REF
+        run: sleep 30
   release:
     needs: e2e
     runs-on: ubuntu-latest
